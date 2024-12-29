@@ -41,7 +41,8 @@ RUN mv libduckdb.so libduckdb_static.a /usr/local/lib
 # Install Pytorch C++ distribution libraries
 # ---------------------------------------------------------------
 WORKDIR /base/
-RUN curl -L https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-2.3.0%2Bcpu.zip --output libtorch-cxx11-abi.zip
+#RUN curl -L https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-2.3.0%2Bcpu.zip --output libtorch-cxx11-abi.zip
+RUN curl -L https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-2.5.1%2Bcpu.zip --output libtorch-cxx11-abi.zip
 RUN unzip libtorch-cxx11-abi.zip
 
 # ---------------------------------------------------------------
@@ -65,7 +66,7 @@ RUN make && make install
 # Install nDPI v4.8-stable
 # ---------------------------------------------------------------
 WORKDIR /base/
-RUN git clone https://github.com/ntop/nDPI.git -b 4.8-stable
+RUN git clone https://github.com/ntop/nDPI.git -b 4.12-stable
 WORKDIR /base/nDPI
 RUN ./autogen.sh && ./configure && make && make install
 
@@ -73,7 +74,7 @@ RUN ./autogen.sh && ./configure && make && make install
 # Install yaf
 # ---------------------------------------------------------------
 WORKDIR /base/
-RUN git clone https://github.com/Fidelis-Farm-Technologies/cert-nsa-yaf -b ndpi-4.8
+RUN git clone https://github.com/Fidelis-Farm-Technologies/cert-nsa-yaf -b ndpi-4.12
 WORKDIR /base/cert-nsa-yaf
 RUN ./configure --enable-entropy --with-ndpi --prefix=/opt/gnat
 RUN make && make install

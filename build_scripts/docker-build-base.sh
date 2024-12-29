@@ -1,5 +1,5 @@
 #!/bin/bash
 
 docker image prune -f
-docker build -t gnat_base -f Dockerfile .
+docker build --no-cache -t fidelismachine/galileo_base -f Dockerfile .
 
