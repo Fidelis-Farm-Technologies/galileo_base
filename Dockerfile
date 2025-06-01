@@ -24,7 +24,7 @@ ENV PATH=/root/.cargo/bin:$PATH
 # Install DuckDB CLI
 # ---------------------------------------------------------------
 WORKDIR /base/duckdb
-RUN curl -L https://github.com/duckdb/duckdb/releases/download/v1.0.0/duckdb_cli-linux-amd64.zip --output duckdb_cli-linux-amd64.zip
+RUN curl -L https://github.com/duckdb/duckdb/releases/download/v1.2.2/duckdb_cli-linux-amd64.zip --output duckdb_cli-linux-amd64.zip
 RUN unzip duckdb_cli-linux-amd64.zip
 RUN mv duckdb /usr/local/bin
 
@@ -32,7 +32,7 @@ RUN mv duckdb /usr/local/bin
 # Install DuckDB library
 # ---------------------------------------------------------------
 WORKDIR /base/duckdb
-RUN curl -L https://github.com/duckdb/duckdb/releases/download/v1.0.0/libduckdb-linux-amd64.zip  --output libduckdb-linux-amd64.zip 
+RUN curl -L https://github.com/duckdb/duckdb/releases/download/v1.2.2/libduckdb-linux-amd64.zip  --output libduckdb-linux-amd64.zip 
 RUN unzip libduckdb-linux-amd64.zip 
 RUN mv duckdb.h duckdb.hpp /usr/local/include
 RUN mv libduckdb.so libduckdb_static.a /usr/local/lib
@@ -41,7 +41,6 @@ RUN mv libduckdb.so libduckdb_static.a /usr/local/lib
 # Install Pytorch C++ distribution libraries
 # ---------------------------------------------------------------
 WORKDIR /base/
-#RUN curl -L https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-2.3.0%2Bcpu.zip --output libtorch-cxx11-abi.zip
 RUN curl -L https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-2.5.1%2Bcpu.zip --output libtorch-cxx11-abi.zip
 RUN unzip libtorch-cxx11-abi.zip
 
@@ -57,7 +56,7 @@ RUN cd libmaxminddb-1.10.0 && ./configure && make && make check && make install
 # Install libfixbuf
 # ---------------------------------------------------------------
 WORKDIR /base/
-RUN git clone https://github.com/Fidelis-Farm-Technologies/cert-nsa-libfixbuf
+RUN git clone https://github.com/Fidelis-Farm-Technologies/cert-nsa-libfixbuf -b ndpiRisk
 WORKDIR /base/cert-nsa-libfixbuf
 RUN ./configure --disable-tools --prefix=/opt/gnat
 RUN make && make install
@@ -66,7 +65,7 @@ RUN make && make install
 # Install nDPI v4.8-stable
 # ---------------------------------------------------------------
 WORKDIR /base/
-RUN git clone https://github.com/ntop/nDPI.git -b 4.12-stable
+RUN git clone https://github.com/ntop/nDPI.git -b 4.14-stable
 WORKDIR /base/nDPI
 RUN ./autogen.sh && ./configure && make && make install
 
@@ -74,7 +73,7 @@ RUN ./autogen.sh && ./configure && make && make install
 # Install yaf
 # ---------------------------------------------------------------
 WORKDIR /base/
-RUN git clone https://github.com/Fidelis-Farm-Technologies/cert-nsa-yaf -b ndpi-4.12
+RUN git clone https://github.com/Fidelis-Farm-Technologies/cert-nsa-yaf -b ndpi-4.14
 WORKDIR /base/cert-nsa-yaf
 RUN ./configure --enable-entropy --with-ndpi --prefix=/opt/gnat
 RUN make && make install
