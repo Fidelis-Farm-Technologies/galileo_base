@@ -24,7 +24,7 @@ ENV PATH=/root/.cargo/bin:$PATH
 # Install DuckDB CLI
 # ---------------------------------------------------------------
 WORKDIR /base/duckdb
-RUN curl -L https://github.com/duckdb/duckdb/releases/download/v1.3.0/duckdb_cli-linux-amd64.zip --output duckdb_cli-linux-amd64.zip
+RUN curl -L https://github.com/duckdb/duckdb/releases/download/v1.2.2/duckdb_cli-linux-amd64.zip --output duckdb_cli-linux-amd64.zip
 RUN unzip duckdb_cli-linux-amd64.zip
 RUN mv duckdb /usr/local/bin
 
@@ -32,7 +32,7 @@ RUN mv duckdb /usr/local/bin
 # Install DuckDB library
 # ---------------------------------------------------------------
 WORKDIR /base/duckdb
-RUN curl -L https://github.com/duckdb/duckdb/releases/download/v1.3.0/libduckdb-linux-amd64.zip  --output libduckdb-linux-amd64.zip 
+RUN curl -L https://github.com/duckdb/duckdb/releases/download/v1.2.2/libduckdb-linux-amd64.zip  --output libduckdb-linux-amd64.zip 
 RUN unzip libduckdb-linux-amd64.zip 
 RUN mv duckdb.h /usr/local/include
 RUN mv libduckdb.so libduckdb_static.a /usr/local/lib
